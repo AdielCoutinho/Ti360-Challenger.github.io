@@ -1,90 +1,73 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('form');
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const phoneInput = document.getElementById('phone');
-    const addressInput = document.getElementById('address');
-    const submitButton = document.getElementById('submitButton');
+  const form = document.getElementById('form');
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const phoneInput = document.getElementById('phone');
+  const addressInput = document.getElementById('address');
+  const submitButton = document.getElementById('submitButton');
 
-    function validateName() {
-      const namePattern = /^[a-zA-Z\s'-]+$/; 
-      if (!namePattern.test(nameInput.value)) {
-        showError(nameInput);
-        nameInput.classList.remove('error');
-        return false;
+  // Função para validar um campo
+  function validateField(inputElement, pattern, errorMessage) {
+      const inputValue = inputElement.value;
+      const isValid = pattern.test(inputValue);
+
+      if (!isValid) {
+          showError(inputElement, errorMessage);
+      } else {
+          hideError(inputElement);
       }
-    
-      hideError(nameInput);
-      nameInput.classList.add('success');
-      return true;
-    }
-    
 
-    function validateEmail() {
-      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-09.-]+\.[a-zA-Z]{2,4}$/;
-      if (!emailPattern.test(emailInput.value)) {
-        showError(emailInput);
-        emailInput.classList.remove('error');
-        return false;
-      }
-      hideError(emailInput);
-      emailInput.classList.add('success');
-      return true;
-    }
+      return isValid;
+  }
 
-    function validatePhone() {
-      const phonePattern = /^(\(?\d{2}\)?\s?)?(\d{9})$/;
-      if (!phonePattern.test(phoneInput.value)) {
-        showError(phoneInput);
-        return false;
-      }
-    
-      showSuccess(phoneInput);
-      return true;
-    }
-    
-    function showSuccess(phoneInput) {
-      phoneInput.classList.remove('error');
-      phoneInput.classList.add('success'); // Adiciona a classe 'success' para a borda verde
-    }
-    
-   
+  // Função para mostrar mensagem de erro
+  function showError(inputElement, errorMessage) {
+      const errorElement = document.getElementById(inputElement.id + 'Error');
+      inputElement.classList.add('error-message'); // Adicione a classe de erro
+      errorElement.textContent = errorMessage; // Defina o texto da mensagem de erro
+  }
 
-    function validateAddress() {
-      if (addressInput.value.trim() === '') {
-        showError(addressInput);
-        return false;
-      }
-     
-      hideError(addressInput);
-      return true;
-    }
+  // Função para esconder mensagem de erro
+  function hideError(inputElement) {
+      const errorElement = document.getElementById(inputElement.id + 'Error');
+      inputElement.classList.remove('error-message'); // Remova a classe de erro
+      errorElement.textContent = ''; // Limpe o texto da mensagem de erro
+  }
 
-    function showError(inputElement) {
-      inputElement.classList.add('error');
-    }
+  // Função para validar o campo de nome
+  function validateName() {
+      const namePattern = /^[a-zA-Z\s'-]+$/;
+      return validateField(nameInput, namePattern, 'Nome inválido');
+  }
 
-    function hideError(inputElement) {
-      inputElement.classList.remove('error');
-    }
+ // Função para validar o campo de email
+function validateEmail() {
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  return validateField(emailInput, emailPattern, 'Email inválido');
+}
 
-    function updateSubmitButtonState() {
+
+  // Função para validar o campo de telefone
+  function validatePhone() {
+      const phonePattern = /^\d{10}$/;
+      return validateField(phoneInput, phonePattern, 'Telefone inválido');
+  }
+
+  // Função para validar o campo de endereço
+  function validateAddress() {
+      const addressPattern = /^[a-zA-Z\s0-9.-]+$/;
+      return validateField(addressInput, addressPattern, 'Endereço inválido');
+  }
+
+  // Impede o envio padrão do formulário
+  form.addEventListener('submit', (e) => {
       const isNameValid = validateName();
       const isEmailValid = validateEmail();
       const isPhoneValid = validatePhone();
-      
+      const isAddressValid = validateAddress();
 
-      submitButton.disabled = !(isNameValid && isEmailValid && isPhoneValid && isAddressValid);
-    }
-
-    nameInput.addEventListener('input', updateSubmitButtonState);
-    emailInput.addEventListener('input', updateSubmitButtonState);
-    phoneInput.addEventListener('input', updateSubmitButtonState);
-    addressInput.addEventListener('input', updateSubmitButtonState);
-
-    form.addEventListener('submit', (event) => {
-      if (!validateName() || !validateEmail() || !validatePhone() || !validateAddress()) {
-        event.preventDefault();
+      if (!(isNameValid && isEmailValid && isPhoneValid && isAddressValid)) {
+          e.preventDefault();
       }
-    });
-    });
+  });
+});

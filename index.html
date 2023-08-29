@@ -9,7 +9,7 @@
 </head>
     <body>
  
-        <form id="form">
+        <form id="form" novalidate>
 
         
                 <div class="container" >
@@ -18,22 +18,26 @@
                         <h1>Formulário de cadastro</h1>
                     
                         <label for="name">Nome Completo</label>
-                        <input type="text" class="name" id="name" name="name" placeholder="Digite seu nome" required oninput="nameValidate"><br>
-                        
+                        <input type="text" class="name" id="name" name="name" placeholder="Digite seu nome"><br>
+                        <p class="error-message" id="nameError"></p> <!-- Mensagem de erro -->
+
                         <label for="email">E-mail</label>
-                        <input type="email" class="email" id="email" name="email" placeholder="Digite seu e-mail" required><br>
-                        
+                        <input type="email" class="email" id="email" name="email" placeholder="Digite seu e-mail"><br>
+                        <p class="error-message" id="emailError"></p> <!-- Mensagem de erro -->
+
                         <label for="phone">Telefone</label>
-                        <input type="number" class="email" id="phone" name="phone" placeholder="Digite seu número de telefone" required><br>
-                        
+                        <input type="number" class="email" id="phone" name="phone" placeholder="Digite seu número de telefone"><br>
+                        <p class="error-message" id="phoneError"></p> <!-- Mensagem de erro -->
+
                         <label for="address">Endereço</label>
-                        <input type="text" class="address" id="address" name="address" placeholder="Cidade" required><br>
-                        <input type="text" class="address" id="address" name="address" placeholder="Estado" required>
-                        <input type="text" class="address" id="address" name="address" placeholder="Rua" required>
-                        <input type="text" class="address" id="address" name="address" placeholder="Cep" required>
-                        <input type="text" class="address" id="address" name="address" placeholder="Complemento" required>
-                
-                        <button class="submitButton" id="submitButton" type="submit" >Enviar</button>
+                        <input type="text" class="address" id="address" name="address" placeholder="Cidade"><br>
+                        <input type="text" class="states" id="states" name="states" placeholder="Estado">
+                        <input type="text" class="rua" id="rua" name="rua" placeholder="Rua">
+                        <input type="text" class="cep" id="cep" name="cep" placeholder="Cep">
+                        <input type="text" class="complement" id="complement" name="complement" placeholder="Complemento">
+                        <p class="error-message" id="addressError"></p> <!-- Mensagem de erro -->
+
+                        <button class="submitButton" id="submitButton" type="submit">Enviar</button>
                     </fieldset>
                 </div>
           
