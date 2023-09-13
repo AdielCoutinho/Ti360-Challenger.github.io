@@ -1,49 +1,59 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
+    <title>Formulário</title>
     <link rel="stylesheet" href="style.css">
-    <script src="Validation.js"></script>
+
 </head>
-    <body>
- 
-        <form id="form" novalidate>
 
-        
-                <div class="container" >
-                    <fieldset>
-                        
-                        <h1>Formulário de cadastro</h1>
-                    
-                        <label for="name">Nome Completo</label>
-                        <input type="text" class="name" id="name" name="name" placeholder="Digite seu nome"><br>
-                        <p class="error-message" id="nameError"></p> 
+<body>
+    <form id="form" novalidate>
+        <div class="container">
+            <fieldset>
+                <h1>Formulário de cadastro</h1>
 
-                        <label for="email">E-mail</label>
-                        <input type="email" class="email" id="email" name="email" placeholder="Digite seu e-mail"><br>
-                        <p class="error-message" id="emailError"></p> 
+                <label for="name">Nome Completo</label>
+                <input type="text" class="name" id="name" name="name" placeholder="Digite seu nome"><br>
+                <p class="error-message" id="nameError"></p> 
 
-                        <label for="phone">Telefone</label>
-                        <input type="number" class="email" id="phone" name="phone" placeholder="Digite seu número de telefone"><br>
-                        <p class="error-message" id="phoneError"></p> 
+                <label for="email">E-mail</label>
+                <input type="email" class="email" id="email" name="email" placeholder="Digite seu e-mail"><br>
+                <span class="error-message" id="emailError"></span>
+                
 
-                        <label for="address">Endereço</label>
-                        <input type="text" class="address" id="address" name="address" placeholder="Cidade"><br>
-                        <input type="text" class="states" id="states" name="states" placeholder="Estado">
-                        <input type="text" class="rua" id="rua" name="rua" placeholder="Rua">
-                        <input type="text" class="cep" id="cep" name="cep" placeholder="Cep">
-                        <input type="text" class="complement" id="complement" name="complement" placeholder="Complemento">
-                        <p class="error-message" id="addressError"></p> 
+                <label for="phone">Telefone</label>
+                <input type="number" class="phone" id="phone" name="phone" placeholder="Digite seu número de telefone"><br>
+                <span class="error-message" id="phoneError"></span>
 
-                        <button class="submitButton" id="submitButton" type="submit">Enviar</button>
-                    </fieldset>
-                </div>
-          
-            
-            
-        </form>
-        
-    </body>
+                <label for="city">Cidade</label>
+                <input type="text" class="city" id="city" name="city" placeholder="Cidade"><br>
+                <span class="error-message" id="cityError"></span>
+
+                <label for="state">Estado</label>
+                <input type="text" class="state" id="state" name="state" placeholder="Estado"><br>
+                <span class="error-message" id="stateError"></span>
+
+                <label for="street">Rua</label>
+                <input type="text" class="street" id="street" name="street" placeholder="Rua"><br>
+                <span class="error-message" id="streetError"></span>
+
+                <label for="zip">CEP</label>
+                <input type="number" class="zip" id="zip" name="zip" placeholder="CEP"><br>
+                <span class="error-message" id="zipError"></span>
+
+                <label for="complement">Complemento</label>
+                <input type="text" class="complement" id="complement" name="complement" placeholder="Complemento"><br>
+                <span class="error-message" id="complementError"></span><br>
+                
+
+                <button class="submit" id="submit" type="submit" value="enviar">Enviar</button>
+            </fieldset>
+        </div>
+    </form>
+    <script src="Validation.js"></script>
+</body>
+
 </html>
