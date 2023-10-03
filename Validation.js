@@ -8,97 +8,74 @@ document.addEventListener("DOMContentLoaded", function() {
   const streetInput = document.getElementById('street');
   const zipInput = document.getElementById('zip');
   const complementInput = document.getElementById('complement');
-  const submitInput = document.getElementById('submit');
+  
+  // ...
 
+  // Função para abrir o modal
+  function openModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+  }
 
+  // Função para fechar o modal
+  function closeModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  }
 
-  function validateField(inputElement, pattern, errorMessage) {
-    const inputValue = inputElement.value;
-    const isValid = pattern.test(inputValue);
+  // Capturar dados e exibi-los no modal
+  function capturarDados() {
+    var nome = nameInput.value;
+    var email = emailInput.value;
+    var phone = phoneInput.value;
+    var city = cityInput.value;
+    var state = stateInput.value;
+    var street = streetInput.value;
+    var zip = zipInput.value;
+    var modalData = document.getElementById("modalData");
 
-    if (!isValid) {
-      showError(inputElement, errorMessage);
+    // Exibir os dados no modal
+    modalData.innerHTML = "Nome: " + nome + "<br>Email: " + email + "<br>Phone: " + phone + "<br>Cidade: " + city + "<br>Rua: " + street + "<br>Estado: " + state + "<br>CEP: " + zip;
+
+    // Abrir o modal
+    openModal();
+  }
+
+  // Event listener para o formulário
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Valida todos os campos
+    const isNameValid = validateName();
+    const isEmailValid = validateEmail();
+    const isPhoneValid = validatePhone();
+    const isCityValid = validateCity();
+    const isStateValid = validateState();
+    const isStreetValid = validateStreet();
+    const isZipValid = validateZip();
+    const isComplementValid = validateComplement();
+
+    if (isNameValid && isEmailValid && isPhoneValid && isCityValid && isStateValid && isStreetValid && isZipValid && isComplementValid) {
+      const formData = {
+        name: nameInput.value,
+        email: emailInput.value,
+        phone: phoneInput.value,
+        city: cityInput.value,
+        state: stateInput.value,
+        street: streetInput.value,
+        zip: zipInput.value,
+        complement: complementInput.value
+      };
+
+      console.log(formData);
+
+      // Capturar e exibir dados no modal
+      capturarDados();
     } else {
-      hideError(inputElement);
-    
+      console.log('Formulário inválido. Corrija os campos destacados');
     }
 
-    return isValid;
-  }
-
-
-  function showError(inputElement, errorMessage) {
-    const errorElement = document.getElementById(inputElement.id + 'Error');
-    inputElement.classList.add('error-message');
-    errorElement.textContent = errorMessage;
-  }
-
-
-  function hideError(inputElement) {
-    const errorElement = document.getElementById(inputElement.id + 'Error');
-    inputElement.classList.remove('error-message');
-    errorElement.textContent = '';
-  }
-
-
-  function validateName() {
-    const namePattern = /^[a-zA-Z\s'-]+$/;
-    return validateField(nameInput, namePattern,'Nome inválido');
-  }
-
-
-  function validateEmail() {
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return validateField(emailInput, emailPattern, 'Email inválido');
-  }
-
-
-
-  function validatePhone() {
-    const phonePattern = /^\d{2}\d{9}$/;
-    return validateField(phoneInput, phonePattern, 'Telefone inválido');
-  }
-
-  function validateCity() {
-    const cityPattern = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
-    return validateField(cityInput, cityPattern, 'Cidade inválido');
-  }  
-  function validateState() {
-    const statePattern = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
-    return validateField(stateInput, statePattern, 'Estado inválido');
-  }  
-
-  // Função para validar a rua
-function validateStreet() {
-  const streetPattern = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
-  return validateField(streetInput, streetPattern, 'Rua inválida');
-}
-
-// Função para validar o CEP
-function validateZip() {
-  const zipPattern =/^\d{5}\d{3}$/;
-  return validateField(zipInput, zipPattern, 'CEP inválido');
-} 
-
-// Função para validar o complemento
-function validateComplement() {
-  const complementPattern = /^[A-Za-z\s'-]+$/;
-  return validateField(complementInput, complementPattern, 'Complemento inválido');
-}
- 
-document.getElementById("form").addEventListener("submit", (enviar)=>{
-  enviar.preventDefault();
-
-  // Valida todos os campos
-  const isNameValid = validateName();
-  const isEmailValid = validateEmail();
-  const isPhoneValid = validatePhone();
-  const isCityValid = validateCity();
-  const isStateValid = validateState();
-  const isStreetValid = validateStreet();
-  const isZipValid = validateZip();
-  const isComplementValid = validateComplement();
-
+    form.reset();
+  });
 });
-})
 

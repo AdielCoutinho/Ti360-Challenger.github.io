@@ -10,46 +10,57 @@
 </head>
 
 <body>
+    <button id="openModalBtn">Abrir Modal</button>
+    <div id="myModal" class="modal">
+       <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Dados capturados</h2>
+        <div id="modalData">
+            <button id="capturarDadosBtn">Capturar Dados</button>
+        </div>
+       </div>
+    </div>
     <form id="form" novalidate>
         <div class="container">
             <fieldset>
                 <h1>Formulário de cadastro</h1>
 
                 <label for="name">Nome Completo</label>
-                <input type="text" class="name" id="name" name="name" placeholder="Digite seu nome"><br>
+                <input type="text" class="name" id="name" name="name" placeholder="Digite seu nome" autocomplete="name"><br>
                 <p class="error-message" id="nameError"></p> 
 
                 <label for="email">E-mail</label>
-                <input type="email" class="email" id="email" name="email" placeholder="Digite seu e-mail"><br>
+                <input type="email" class="email" id="email" name="email" placeholder="Digite seu e-mail" autocomplete="email"><br>
                 <span class="error-message" id="emailError"></span>
                 
 
                 <label for="phone">Telefone</label>
-                <input type="number" class="phone" id="phone" name="phone" placeholder="Digite seu número de telefone"><br>
+                <input type="number" class="phone" id="phone" name="phone" placeholder="Digite seu número de telefone" autocomplete="tel"><br>
                 <span class="error-message" id="phoneError"></span>
 
                 <label for="city">Cidade</label>
-                <input type="text" class="city" id="city" name="city" placeholder="Cidade"><br>
+                <input type="text" class="city" id="city" name="city" placeholder="Cidade" autocomplete="address-level2"><br>
                 <span class="error-message" id="cityError"></span>
 
                 <label for="state">Estado</label>
-                <input type="text" class="state" id="state" name="state" placeholder="Estado"><br>
+                <input type="text" class="state" id="state" name="state" placeholder="Estado" autocomplete="address-level1"><br>
                 <span class="error-message" id="stateError"></span>
 
                 <label for="street">Rua</label>
-                <input type="text" class="street" id="street" name="street" placeholder="Rua"><br>
+                <input type="text" class="street" id="street" name="street" placeholder="Rua" autocomplete="address-line1"><br>
                 <span class="error-message" id="streetError"></span>
 
                 <label for="zip">CEP</label>
-                <input type="number" class="zip" id="zip" name="zip" placeholder="CEP"><br>
+                <input type="number" class="zip" id="zip" name="zip" placeholder="CEP" autocomplete="postal-code"><br>
                 <span class="error-message" id="zipError"></span>
 
                 <label for="complement">Complemento</label>
-                <input type="text" class="complement" id="complement" name="complement" placeholder="Complemento"><br>
+                <input type="text" class="complement" id="complement" name="complement" placeholder="Complemento" autocomplete="on"><br>
                 <span class="error-message" id="complementError"></span><br>
                 
 
                 <button class="submit" id="submit" type="submit" value="enviar">Enviar</button>
+                
             </fieldset>
         </div>
     </form>
